@@ -380,6 +380,6 @@ def documentacion():
     ### 📁 Formato de Datos
     
     **Archivo de Entrenamiento:**
-    ```csv
+    \`\`\`csv
     title,abstract,labels
     "Título del artículo","Resumen del artículo","Cardiovascular;Neurológico"

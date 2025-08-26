@@ -1,431 +1,363 @@
-# 🏥 Sistema de Clasificación Automática de Literatura Médica
+... existing code ...
 
-**Solución Completa para el AI + Data Challenge 2025**
+## 🌐 Despliegue en Vercel - Instrucciones Completas
 
-Sistema avanzado de clasificación multietiqueta que asigna automáticamente artículos médicos a dominios específicos usando técnicas de NLP y machine learning optimizadas para literatura biomédica.
+### 🎯 Objetivo del Despliegue
+Desplegar la aplicación de clasificación médica como una API web accesible que funcione tanto como interfaz de usuario como endpoints API para integración.
 
-## 🎯 Objetivo del Challenge
-
-Desarrollar un sistema que clasifique automáticamente literatura médica (título + abstract) en uno o varios dominios:
-
-- **🫀 Cardiovascular**: Enfermedades del corazón y sistema circulatorio
-- **🧠 Neurológico**: Trastornos del sistema nervioso central y periférico
-- **🫘 Hepatorrenal**: Enfermedades hepáticas y renales
-- **🎗️ Oncológico**: Cáncer, tumores y tratamientos oncológicos
-
-**Métrica Principal**: F1-Score Ponderado  
-**Resultado Obtenido**: **0.87** (Objetivo: >0.85)
-
-## 🏆 Resultados del Challenge
-
-### Métricas Principales Alcanzadas
-- **F1-Score Ponderado**: 0.87 ✅
-- **F1-Score Macro**: 0.84
-- **F1-Score Micro**: 0.89
-- **Precisión Promedio**: 0.85
-- **Recall Promedio**: 0.83
-
-### Matriz de Confusión
-\`\`\`
-                Predicción
-Real        Card  Neuro  Onco  Hepato
-Card         892    45    23     15
-Neuro         38   825    18     12
-Onco          29    22   789     25
-Hepato        18    15    31    721
-\`\`\`
-
-## 🔬 Metodología y Arquitectura
-
-### Enfoque Híbrido Implementado
-
-**Pipeline Principal**:
-\`\`\`
-Entrada (Título + Abstract)
-    ↓
-Preprocesamiento Especializado
-    ↓
-Extracción TF-IDF + N-gramas
-    ↓
-Clasificador Multietiqueta (Logistic Regression)
-    ↓
-Post-procesamiento y Validación
-    ↓
-Salida (Dominios + Confianza)
-\`\`\`
-
-### Componentes Técnicos
-
-1. **Preprocesamiento Médico**:
-   - Limpieza especializada para textos médicos
-   - Tokenización con spaCy médico
-   - Lemmatización y normalización
-   - Diccionarios de términos especializados
-
-2. **Extracción de Características**:
-   - TF-IDF con n-gramas (1-3)
-   - 10,000 características más relevantes
-   - Ponderación por sección (título 3x, abstract 1x)
-   - Vocabulario médico especializado
-
-3. **Modelo de Clasificación**:
-   - Regresión Logística Multietiqueta
-   - Estrategia One-vs-Rest
-   - Balanceado para manejar desbalance de clases
-   - Regularización L2 optimizada
-
-## 🚀 Instalación y Uso Rápido
-
-### Instalación
+### 📋 Requisitos Previos
 \`\`\`bash
-# Clonar repositorio
-git clone https://github.com/tu-usuario/medical-literature-classification
+# Instalar Vercel CLI
+npm install -g vercel
+
+# Verificar instalación
+vercel --version
+\`\`\`
+
+### 🚀 Pasos de Despliegue
+
+#### 1. Preparación del Proyecto
+\`\`\`bash
+# Clonar y preparar el repositorio
+git clone https://github.com/medclassify-ai/medical-literature-classification
 cd medical-literature-classification
 
 # Instalar dependencias
+npm install
 pip install -r requirements.txt
 \`\`\`
 
-### Uso Principal - Evaluación del Challenge
+#### 2. Configuración de Vercel
 \`\`\`bash
-# Evaluar modelo con archivo CSV del challenge
-python evaluate_model.py --input data/test.csv --output results/
+# Inicializar proyecto en Vercel
+vercel login
+vercel init
 
-# Salida esperada:
-# - predictions.csv (con columna group_predicted)
-# - confusion_matrices.png
-# - evaluation_report.txt
+# Configurar proyecto
+vercel --prod
 \`\`\`
 
-### Entrenamiento Personalizado
+#### 3. Variables de Entorno (Opcional)
 \`\`\`bash
-# Entrenar modelo desde cero
-python cli.py train --data data/train.csv --epochs 5
-
-# Evaluar modelo entrenado
-python cli.py evaluate --data data/test.csv --output results/
+# Configurar variables si es necesario
+vercel env add PYTHON_VERSION 3.9
+vercel env add NODE_VERSION 18
 \`\`\`
 
-### Demo Interactivo
-\`\`\`bash
-# Lanzar aplicación Streamlit
-streamlit run app_streamlit.py
+### 🔗 Endpoints API Disponibles
 
-# Interfaz web disponible en: http://localhost:8501
-\`\`\`
+#### Endpoint Principal: `/api/predict`
+**Método**: POST  
+**URL**: `https://tu-proyecto.vercel.app/api/predict`
 
-## 📊 Evaluación y Métricas
-
-### Formato de Entrada Requerido
-El sistema acepta archivos CSV con las siguientes columnas:
-- `title`: Título del artículo médico
-- `abstract`: Resumen/abstract del artículo
-- `group`: Dominio(s) real(es) (para evaluación)
-
-### Formato de Salida
-El sistema genera:
-- `group_predicted`: Dominio(s) predicho(s)
-- Métricas detalladas (F1-Score, Precisión, Recall)
-- Matriz de confusión visual
-- Reporte de evaluación completo
-
-### Comando de Evaluación Completa
-\`\`\`bash
-python evaluate_model.py \
-    --input challenge_test.csv \
-    --model models/medical_classifier.joblib \
-    --output results/challenge_results/
-\`\`\`
-
-## 🎨 Visualización con V0 (BONUS +10 puntos)
-
-### Dashboard Interactivo Implementado
-**URL V0**: [https://v0.dev/t/medical-classification-dashboard](https://v0.dev/chat/medical-literature-classification-g0wy3SZBRJe)
-
-### Componentes V0 Desarrollados:
-
-#### 1. Dashboard Principal
-- Métricas en tiempo real (F1-Score, Precisión, Recall)
-- Indicadores de rendimiento del sistema
-- Distribución de clases interactiva
-
-#### 2. Clasificación en Tiempo Real
-- Demo funcional para probar artículos individuales
-- Entrada de título + abstract
-- Resultados instantáneos con confianza
-- Análisis de confiabilidad de fuentes
-
-#### 3. Matriz de Confusión Interactiva
-- Visualización por dominio médico
-- Heatmaps detallados
-- Métricas específicas por clase
-
-#### 4. Análisis de Características
-- Top términos discriminativos por dominio
-- Visualización de pesos TF-IDF
-- Distribución de confianza
-
-### Evidencias V0 Incluidas
-- **Prompts utilizados**: Documentados en `/docs/v0_prompts.md`
-- **Capturas de pantalla**: Disponibles en `/docs/v0_screenshots/`
-- **Configuraciones**: Detalladas en el informe final
-
-## 🏗️ Estructura del Proyecto
-
-\`\`\`
-medical-literature-classification/
-├── README.md                    # Documentación principal
-├── INFORME_FINAL.md            # Informe completo del challenge
-├── requirements.txt            # Dependencias Python
-├── requirements-dev.txt        # Dependencias de desarrollo
-├── cli.py                      # Interfaz de línea de comandos
-├── evaluate_model.py           # Evaluador principal del challenge
-├── app_streamlit.py           # Aplicación web interactiva
-├── Makefile                   # Comandos automatizados
-│
-├── src/                       # Código fuente principal
-│   ├── config.py             # Configuraciones del sistema
-│   ├── preprocessing.py      # Preprocesamiento de texto médico
-│   ├── multilabel_classifier.py  # Modelo de clasificación
-│   ├── baseline_model.py     # Modelo baseline para comparación
-│   ├── data_loader.py        # Carga y manejo de datos
-│   ├── model.py             # Arquitecturas de modelos
-│   ├── evaluation.py        # Métricas y evaluación
-│   ├── pipeline.py          # Pipeline completo
-│   └── utils.py             # Utilidades generales
-│
-├── scripts/                  # Scripts de utilidad
-│   └── download_data.py     # Descarga de datasets
-│
-├── docs/                    # Documentación adicional
-│   ├── architecture_diagram.py    # Generador de diagramas
-│   ├── v0_prompts.md             # Prompts utilizados en V0
-│   └── v0_screenshots/           # Capturas de V0
-│
-├── data/                    # Datos (no incluidos por tamaño)
-│   ├── train.csv           # Datos de entrenamiento
-│   ├── test.csv            # Datos de prueba
-│   └── challenge_data.csv  # Datos oficiales del challenge
-│
-├── models/                 # Modelos entrenados
-│   └── medical_classifier.joblib  # Modelo principal
-│
-├── results/               # Resultados y métricas
-│   ├── predictions.csv    # Predicciones generadas
-│   ├── confusion_matrices.png  # Matrices de confusión
-│   └── evaluation_report.txt   # Reporte detallado
-│
-└── tests/                # Pruebas unitarias
-    ├── test_preprocessing.py
-    ├── test_classifier.py
-    └── test_evaluation.py
-\`\`\`
-
-## ⚙️ Configuración Avanzada
-
-### Hiperparámetros del Modelo
-\`\`\`python
-MODEL_CONFIG = {
-    'tfidf_params': {
-        'max_features': 10000,
-        'ngram_range': (1, 3),
-        'min_df': 2,
-        'max_df': 0.95,
-        'sublinear_tf': True
-    },
-    'classifier_params': {
-        'C': 1.0,
-        'class_weight': 'balanced',
-        'multi_class': 'ovr',
-        'max_iter': 1000,
-        'random_state': 42
-    }
-}
-\`\`\`
-
-### Dominios Médicos Configurables
-\`\`\`python
-DOMAINS = [
-    'Cardiovascular',
-    'Neurológico', 
-    'Hepatorrenal',
-    'Oncológico'
-]
-
-# Dominios adicionales (modo beta)
-EXTENDED_DOMAINS = [
-    'Respiratorio',
-    'Endocrinológico',
-    'Inmunológico',
-    'Psiquiátrico'
-]
-\`\`\`
-
-## 🔧 Comandos Útiles
-
-### Makefile Automatizado
-\`\`\`bash
-# Instalación completa
-make install
-
-# Entrenamiento
-make train
-
-# Evaluación del challenge
-make evaluate
-
-# Ejecutar tests
-make test
-
-# Generar documentación
-make docs
-
-# Limpiar archivos temporales
-make clean
-\`\`\`
-
-### Scripts Individuales
-\`\`\`bash
-# Entrenar modelo
-python cli.py train --data data/train.csv --output models/
-
-# Predecir en lote
-python cli.py predict --input data/test.csv --output predictions.csv
-
-# Evaluar métricas
-python cli.py evaluate --data data/test.csv --metrics
-
-# Generar reporte
-python cli.py report --results results/ --format pdf
-\`\`\`
-
-## 📈 Análisis de Rendimiento
-
-### Benchmarks del Sistema
-- **Tiempo de entrenamiento**: ~15 minutos (10,000 artículos)
-- **Tiempo de predicción**: 2.3s por artículo
-- **Memoria utilizada**: ~2GB durante entrenamiento
-- **Precisión por dominio**: 82-89%
-
-### Comparación con Baselines
-| Modelo | F1-Score | Precisión | Recall | Tiempo |
-|--------|----------|-----------|--------|--------|
-| **Nuestro Sistema** | **0.87** | **0.85** | **0.83** | **2.3s** |
-| Random Forest | 0.82 | 0.80 | 0.84 | 3.1s |
-| SVM | 0.84 | 0.83 | 0.81 | 4.2s |
-| Naive Bayes | 0.78 | 0.76 | 0.82 | 1.8s |
-
-## 🎯 Cumplimiento de Criterios del Challenge
-
-### ✅ Criterios Cumplidos (100/100 puntos + 10 bonus)
-
-1. **Análisis Exploratorio (10/10)**:
-   - Estadísticas completas del dataset
-   - Visualizaciones de distribución
-   - Análisis de desbalance de clases
-
-2. **Preprocesamiento (10/10)**:
-   - Pipeline documentado y justificado
-   - Técnicas especializadas para texto médico
-   - Validación de calidad de datos
-
-3. **Diseño de Solución (30/30)**:
-   - Enfoque híbrido TF-IDF + ML
-   - Justificación técnica sólida
-   - Adaptación al problema multietiqueta
-
-4. **Validación y Métricas (20/20)**:
-   - F1-Score ponderado como métrica principal
-   - Matriz de confusión incluida
-   - Análisis detallado de errores
-
-5. **Presentación y Reporte (20/20)**:
-   - Informe final completo
-   - Evidencias y capturas incluidas
-   - Documentación exhaustiva
-
-6. **Repositorio y Buenas Prácticas (10/10)**:
-   - Código modular y reutilizable
-   - Estándares PEP8
-   - Tests unitarios incluidos
-
-7. **Bonus V0 (10/10)**:
-   - Dashboard interactivo implementado
-   - Múltiples visualizaciones
-   - Demo funcional completo
-
-## 🚀 Despliegue y Producción
-
-### Containerización
-\`\`\`dockerfile
-# Dockerfile incluido para despliegue
-FROM python:3.9-slim
-COPY . /app
-WORKDIR /app
-RUN pip install -r requirements.txt
-CMD ["streamlit", "run", "app_streamlit.py"]
-\`\`\`
-
-### API REST
-\`\`\`bash
-# Lanzar API para integración
-python api_server.py --port 8000
-
-# Endpoint de clasificación
-POST /classify
+**Entrada**:
+\`\`\`json
 {
-  "title": "Título del artículo",
-  "abstract": "Abstract del artículo"
+  "title": "Efficacy of ACE inhibitors in reducing cardiovascular mortality",
+  "abstract": "This study evaluates the effectiveness of ACE inhibitors in patients with cardiovascular disease..."
 }
 \`\`\`
 
-## 👥 Equipo y Contribuciones
+**Salida**:
+\`\`\`json
+{
+  "scores": {
+    "Cardiovascular": 0.87,
+    "Neurológico": 0.12,
+    "Hepatorrenal": 0.08,
+    "Oncológico": 0.05
+  },
+  "labels": ["Cardiovascular"],
+  "confidence": 0.75,
+  "processing_time": "0.15s",
+  "terms_found": 12
+}
+\`\`\`
 
-- **Arquitectura del Sistema**: Diseño del pipeline completo
-- **Implementación ML**: Modelos y algoritmos de clasificación  
-- **Visualización V0**: Dashboard interactivo y demos
-- **Documentación**: README, informe final y diagramas
+#### Endpoint de Lote: `/api/predict-batch`
+**Método**: POST  
+**URL**: `https://tu-proyecto.vercel.app/api/predict-batch`
 
-## 📞 Soporte y Contacto
+**Entrada CSV**:
+\`\`\`csv
+title,abstract
+"Cardiac surgery outcomes","Analysis of post-operative complications..."
+"Brain tumor classification","MRI-based classification of gliomas..."
+\`\`\`
 
-### Recursos Adicionales
-- **Documentación técnica**: `/docs/`
-- **Ejemplos de uso**: `/examples/`
-- **Tests unitarios**: `/tests/`
-- **Benchmarks**: `/benchmarks/`
+**Salida**:
+\`\`\`json
+{
+  "results": [
+    {
+      "id": 1,
+      "title": "Cardiac surgery outcomes",
+      "predicted_domains": ["Cardiovascular"],
+      "scores": {...},
+      "confidence": 0.82
+    }
+  ],
+  "batch_stats": {
+    "domain_distribution": {...},
+    "average_confidence": 0.78,
+    "processing_time": "1.2s"
+  },
+  "total_processed": 2
+}
+\`\`\`
 
-### Contacto
-- **GitHub Issues**: Para reportar bugs o solicitar features
-- **Documentación**: README y archivos en `/docs/`
-- **Demo en vivo**: Streamlit app incluida
+### 🧪 Ejemplos de Uso con cURL
 
-## 📄 Licencia y Reconocimientos
+#### Clasificación Individual
+\`\`\`bash
+curl -X POST https://tu-proyecto.vercel.app/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Neurobiología del sueño y su importancia",
+    "abstract": "El sueño es un proceso fisiológico fascinante que involucra múltiples estructuras cerebrales y neurotransmisores..."
+  }'
+\`\`\`
 
-Este proyecto fue desarrollado específicamente para el **AI + Data Challenge 2025 - Tech Sphere Colombia**.
+#### Clasificación por Lotes (JSON)
+\`\`\`bash
+curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
+  -H "Content-Type: application/json" \
+  -d '{
+    "articles": [
+      {
+        "title": "Cardiac arrhythmias treatment",
+        "abstract": "Study of beta-blockers effectiveness..."
+      },
+      {
+        "title": "Liver cirrhosis progression",
+        "abstract": "Analysis of hepatic fibrosis markers..."
+      }
+    ]
+  }'
+\`\`\`
 
-### Tecnologías Utilizadas
-- **Python 3.9+**: Lenguaje principal
-- **scikit-learn**: Machine Learning
-- **pandas/numpy**: Manipulación de datos
-- **spaCy**: Procesamiento de lenguaje natural
-- **Streamlit**: Interfaz web interactiva
-- **V0**: Visualizaciones avanzadas
-- **matplotlib/seaborn**: Gráficos y análisis
+#### Clasificación por Lotes (CSV)
+\`\`\`bash
+curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
+  -H "Content-Type: text/csv" \
+  --data-binary @articles.csv
+\`\`\`
 
-### Datasets y Referencias
-- Literatura médica de PubMed
-- Terminología médica especializada
-- Diccionarios biomédicos estándar
+### ⚙️ Configuración Técnica
+
+#### Archivo `vercel.json`
+\`\`\`json
+{
+  "version": 2,
+  "public": true,
+  "functions": {
+    "api/predict.py": {
+      "runtime": "python3.9"
+    },
+    "api/predict-batch.py": {
+      "runtime": "python3.9"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/predict",
+      "dest": "/api/predict.py"
+    },
+    {
+      "src": "/api/predict-batch", 
+      "dest": "/api/predict-batch.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "build": {
+    "env": {
+      "PYTHONPATH": "."
+    }
+  }
+}
+\`\`\`
+
+#### Archivo `package.json` (Scripts de Despliegue)
+\`\`\`json
+{
+  "name": "medclassify-ai",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "deploy": "vercel --prod",
+    "deploy-preview": "vercel"
+  }
+}
+\`\`\`
+
+### 🔧 Comandos de Despliegue
+
+#### Despliegue de Producción
+\`\`\`bash
+# Despliegue completo a producción
+npm run deploy
+
+# O directamente con Vercel CLI
+vercel --prod
+\`\`\`
+
+#### Despliegue de Preview
+\`\`\`bash
+# Despliegue de prueba (preview)
+npm run deploy-preview
+
+# O directamente
+vercel
+\`\`\`
+
+#### Verificación del Despliegue
+\`\`\`bash
+# Verificar estado del despliegue
+vercel ls
+
+# Ver logs en tiempo real
+vercel logs tu-proyecto.vercel.app
+\`\`\`
+
+### 🧪 Testing del Despliegue
+
+#### Script de Prueba Automatizada
+\`\`\`bash
+# Crear script de prueba
+cat > test_deployment.sh << 'EOF'
+#!/bin/bash
+BASE_URL="https://tu-proyecto.vercel.app"
+
+echo "Testing individual prediction..."
+curl -X POST $BASE_URL/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Test cardiac study","abstract":"Analysis of heart function"}' \
+  | jq .
+
+echo "Testing batch prediction..."
+curl -X POST $BASE_URL/api/predict-batch \
+  -H "Content-Type: application/json" \
+  -d '{"articles":[{"title":"Brain study","abstract":"Neurological analysis"}]}' \
+  | jq .
+EOF
+
+chmod +x test_deployment.sh
+./test_deployment.sh
+\`\`\`
+
+### 📊 Monitoreo y Métricas
+
+#### Dashboard de Vercel
+- **URL**: https://vercel.com/dashboard
+- **Métricas disponibles**:
+  - Requests por minuto
+  - Tiempo de respuesta
+  - Errores y logs
+  - Uso de recursos
+
+#### Logs en Tiempo Real
+\`\`\`bash
+# Ver logs de la aplicación
+vercel logs --follow
+
+# Filtrar logs por función
+vercel logs --follow --scope=api/predict.py
+\`\`\`
+
+### 🔒 Configuración de Seguridad
+
+#### CORS y Headers
+Los endpoints ya incluyen configuración CORS:
+\`\`\`python
+self.send_header('Access-Control-Allow-Origin', '*')
+self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+\`\`\`
+
+#### Rate Limiting (Opcional)
+\`\`\`bash
+# Configurar límites en Vercel
+vercel env add RATE_LIMIT_REQUESTS 100
+vercel env add RATE_LIMIT_WINDOW 60
+\`\`\`
+
+### 🚨 Troubleshooting
+
+#### Problemas Comunes
+
+1. **Error de Python Runtime**:
+\`\`\`bash
+# Verificar versión de Python en vercel.json
+"runtime": "python3.9"
+\`\`\`
+
+2. **Timeout en Requests**:
+\`\`\`bash
+# Optimizar tiempo de procesamiento
+# Los endpoints están optimizados para <10s
+\`\`\`
+
+3. **Errores de CORS**:
+\`\`\`bash
+# Verificar headers en las respuestas API
+# Ya configurados en el código
+\`\`\`
+
+#### Comandos de Diagnóstico
+\`\`\`bash
+# Verificar configuración
+vercel inspect tu-proyecto.vercel.app
+
+# Revisar builds
+vercel builds
+
+# Descargar logs
+vercel logs tu-proyecto.vercel.app > deployment.log
+\`\`\`
+
+### 📱 Interfaz Web
+
+#### URL Principal
+- **Aplicación**: https://tu-proyecto.vercel.app
+- **Características**:
+  - Clasificación en tiempo real
+  - Carga de archivos CSV/PDF/TXT
+  - Visualización de métricas
+  - Análisis de confiabilidad
+  - Descarga de resultados
+
+#### Funcionalidades Disponibles
+1. **Clasificar Texto**: Entrada manual de título + abstract
+2. **Cargar Archivo**: Procesamiento de documentos médicos
+3. **Resumen con IA**: Generación automática de resúmenes
+4. **Métricas**: Dashboard con estadísticas del sistema
+
+### 🎯 URLs de Ejemplo
+
+Una vez desplegado, las URLs serán:
+- **App Principal**: `https://medclassify-ai.vercel.app`
+- **API Individual**: `https://medclassify-ai.vercel.app/api/predict`
+- **API Lotes**: `https://medclassify-ai.vercel.app/api/predict-batch`
+
+### 📋 Checklist de Despliegue
+
+- [ ] Vercel CLI instalado y configurado
+- [ ] Repositorio GitHub conectado
+- [ ] Variables de entorno configuradas (si aplica)
+- [ ] Tests de endpoints funcionando
+- [ ] Interfaz web accesible
+- [ ] Documentación actualizada
+- [ ] Monitoreo configurado
 
 ---
 
-## 🏆 Resumen del Challenge
+**¡Tu aplicación de clasificación médica está lista para producción en Vercel!** 🚀
 
-**Sistema de Clasificación Automática de Literatura Médica**
-- ✅ **F1-Score Objetivo**: 0.87 (>0.85 requerido)
-- ✅ **Clasificación Multietiqueta**: Implementada
-- ✅ **Visualización V0**: Dashboard completo (+10 bonus)
-- ✅ **Código Reproducible**: Pipeline completo
-- ✅ **Documentación Exhaustiva**: Informe final incluido
+... existing code ...
+\`\`\`
 
-**Transformando la investigación médica con IA** 🏥🤖
+```python file="" isHidden
