@@ -1,5 +1,3 @@
-... existing code ...
-
 ## 🌐 Despliegue en Vercel - Instrucciones Completas
 
 ### 🎯 Objetivo del Despliegue
@@ -357,7 +355,154 @@ Una vez desplegado, las URLs serán:
 
 **¡Tu aplicación de clasificación médica está lista para producción en Vercel!** 🚀
 
-... existing code ...
+## 📊 Evaluación y Predicción
+
+Este repositorio incluye el script `evaluate_and_predict.py` para evaluar el modelo entrenado sobre un archivo CSV y generar las predicciones requeridas por la convocatoria.
+
+### Formato del CSV de entrada
+El archivo debe contener las columnas obligatorias:
+- `title` - Título del artículo médico
+- `abstract` - Resumen/abstract del artículo
+- `group` - Etiqueta real del dominio médico
+
+### Ejemplo de CSV de entrada
+\`\`\`csv
+title,abstract,group
+"Efficacy of ACE inhibitors in reducing cardiovascular mortality","This study evaluates the effectiveness of ACE inhibitors in patients with heart failure and reduced ejection fraction...","Cardiovascular"
+"Neurobiología del sueño y su importancia","El sueño es un proceso fisiológico fascinante que involucra múltiples estructuras cerebrales y neurotransmisores...","Neurológico"
+"Hepatic fibrosis progression markers","Analysis of biomarkers for hepatic fibrosis progression in patients with chronic liver disease and cirrhosis...","Hepatorrenal"
+"Breast cancer treatment outcomes","Evaluation of chemotherapy effectiveness in triple-negative breast cancer patients with adjuvant therapy...","Oncológico"
 \`\`\`
 
-```python file="" isHidden
+### Uso del Script de Evaluación
+
+#### 1. Preparación del entorno
+\`\`\`bash
+# Crear entorno virtual
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+\`\`\`
+
+#### 2. Ejecutar evaluación y predicción
+\`\`\`bash
+python evaluate_and_predict.py --input data/test.csv --model models/best_model.joblib --out-dir outputs
+\`\`\`
+
+#### 3. Parámetros del script
+- `--input`: Ruta al archivo CSV de entrada (obligatorio)
+- `--model`: Ruta al modelo entrenado en formato joblib (obligatorio)  
+- `--out-dir`: Directorio de salida para resultados (por defecto: "outputs")
+
+### Salida del Script
+
+El script genera los siguientes archivos en el directorio de salida:
+
+#### 1. `predictions.csv`
+Archivo CSV con una columna adicional `group_predicted`:
+\`\`\`csv
+title,abstract,group,group_predicted
+"Efficacy of ACE inhibitors...","This study evaluates...","Cardiovascular","Cardiovascular"
+"Neurobiología del sueño...","El sueño es un proceso...","Neurológico","Neurológico"
+\`\`\`
+
+#### 2. `metrics.json`
+Archivo JSON con métricas de desempeño:
+\`\`\`json
+{
+  "f1_weighted": 0.89,
+  "hamming_loss": 0.11,
+  "exact_match": 0.85,
+  "labels": ["Cardiovascular", "Neurológico", "Hepatorrenal", "Oncológico"],
+  "precision_per_label": [0.92, 0.88, 0.85, 0.90],
+  "recall_per_label": [0.90, 0.87, 0.83, 0.88],
+  "f1_per_label": [0.91, 0.87, 0.84, 0.89]
+}
+\`\`\`
+
+#### 3. `confusion_matrix.png`
+Matriz de confusión visual guardada como imagen PNG.
+
+### Métricas en Consola
+
+Durante la ejecución, el script muestra:
+
+\`\`\`bash
+=== Métricas de Desempeño ===
+F1 weighted: 0.89
+Hamming Loss: 0.11
+Exact Match: 0.85
+
+Saved predictions to outputs/predictions.csv
+Saved metrics to outputs/metrics.json
+Saved confusion matrix to outputs/confusion_matrix.png
+\`\`\`
+
+### Ejemplo Completo de Ejecución
+
+\`\`\`bash
+# 1. Preparar datos de prueba
+mkdir -p data
+cat > data/test.csv << 'EOF'
+title,abstract,group
+"Cardiac arrhythmias in elderly patients","Study of atrial fibrillation management in patients over 65 years old with comorbidities","Cardiovascular"
+"Sleep disorders and cognitive function","Analysis of the relationship between sleep quality and memory consolidation in young adults","Neurológico"
+"Liver transplant outcomes","Evaluation of post-transplant survival rates and complications in hepatocellular carcinoma patients","Hepatorrenal"
+"Chemotherapy resistance mechanisms","Investigation of drug resistance pathways in metastatic colorectal cancer treatment","Oncológico"
+EOF
+
+# 2. Ejecutar evaluación
+python evaluate_and_predict.py --input data/test.csv --model models/best_model.joblib --out-dir results
+
+# 3. Verificar resultados
+ls results/
+# predictions.csv  metrics.json  confusion_matrix.png
+
+# 4. Ver métricas
+cat results/metrics.json | python -m json.tool
+\`\`\`
+
+### 🧪 Tests Automatizados
+
+Para validar que el script funciona correctamente:
+
+\`\`\`bash
+# Ejecutar tests unitarios
+pytest tests/test_pipeline.py -v
+
+# Ejecutar todos los tests
+pytest tests/ -v
+\`\`\`
+
+Los tests verifican:
+- ✅ Validación de formato CSV (columnas obligatorias)
+- ✅ Carga y predicción con modelo válido
+- ✅ Generación de archivos de salida
+- ✅ Presencia de columna `group_predicted`
+- ✅ Cálculo de métricas requeridas
+- ✅ Manejo de errores (modelo inexistente, CSV inválido)
+
+### 📋 Requisitos de la Convocatoria
+
+Este script cumple con todos los requisitos especificados:
+
+- ✅ **Carga CSV**: Acepta archivos con columnas `title`, `abstract`, `group`
+- ✅ **Predicción**: Genera columna `group_predicted` en la salida
+- ✅ **Métrica principal**: Calcula F1-score ponderado (weighted)
+- ✅ **Métricas adicionales**: Hamming Loss, Exact Match, precisión/recall por clase
+- ✅ **Matriz de confusión**: Genera y guarda visualización
+- ✅ **Reproducibilidad**: Script ejecutable con instrucciones claras
+- ✅ **Manejo de errores**: Códigos de salida apropiados (0=éxito, 1=error)
+
+### ⚠️ Nota Importante
+
+**"Si no es posible ejecutar la solución, la prueba no será considerada."**
+
+Este script ha sido diseñado para ser completamente ejecutable siguiendo las instrucciones proporcionadas. Asegúrate de:
+
+1. Tener Python 3.8+ instalado
+2. Instalar todas las dependencias con `pip install -r requirements.txt`
+3. Tener el modelo entrenado disponible en `models/best_model.joblib`
+4. Usar el formato CSV exacto especificado
