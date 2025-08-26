@@ -1,0 +1,21 @@
+{
+  "model_config": {
+    "base_model": "emilyalsentzer/Bio_Discharge_Summary_BERT",
+    "max_length": 512,
+    "num_labels": 4,
+    "dropout_rate": 0.3
+  },
+  "training_config": {
+    "learning_rate": 2e-5,
+    "batch_size": 16,
+    "epochs": 3,
+    "weight_decay": 0.01,
+    "warmup_steps": 100
+  },
+  "data_config": {
+    "test_size": 0.2,
+    "val_size": 0.1,
+    "random_state": 42
+  },
+  "classes": ["Cardiovascular", "Neurological", "Hepatorenal", "Oncological"]
+}
