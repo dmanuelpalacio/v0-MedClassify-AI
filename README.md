@@ -4,62 +4,66 @@
 Desplegar la aplicación de clasificación médica como una API web accesible que funcione tanto como interfaz de usuario como endpoints API para integración.
 
 ### 📋 Requisitos Previos
-\`\`\`bash
+```bash
 # Instalar Vercel CLI
 npm install -g vercel
 
 # Verificar instalación
 vercel --version
-\`\`\`
+```
 
 ### 🚀 Pasos de Despliegue
 
 #### 1. Preparación del Proyecto
-\`\`\`bash
+```bash
 # Clonar y preparar el repositorio
-git clone [https://github.com/medclassify-ai/medical-literature-classification](https://github.com/dmanuelpalacio/v0-MedClassify-AI)
-cd medical-literature-classification
+git clone https://github.com/dmanuelpalacio/v0-MedClassify-AI.git
+cd v0-MedClassify-AI
 
-https://v0.app/chat/medical-literature-classification-eLoH6Tv6V7G?b=b_XeKeP0FGLtK
+# Enlace demo/chat: https://v0.app/chat/medical-literature-classification-eLoH6Tv6V7G?b=b_XeKeP0FGLtK
 
 # Instalar dependencias
 npm install
 pip install -r requirements.txt
-\`\`\`
+```
 
 #### 2. Configuración de Vercel
-\`\`\`bash
-# Inicializar proyecto en Vercel
+```bash
+# Inicializar proyecto en Vercel (autenticarse si es necesario)
 vercel login
 vercel init
 
-# Configurar proyecto
+# Configurar proyecto y desplegar a producción
 vercel --prod
-\`\`\`
+```
 
 #### 3. Variables de Entorno (Opcional)
-\`\`\`bash
-# Configurar variables si es necesario
-vercel env add PYTHON_VERSION 3.9
-vercel env add NODE_VERSION 18
-\`\`\`
+> **Nota:** Para agregar variables de entorno en Vercel debes ejecutar `vercel env add` y seguir el prompt interactivo. Ejemplo:
+```bash
+vercel env add PYTHON_VERSION
+# (cuando lo pida, escribe: 3.9)
+
+vercel env add NODE_VERSION
+# (cuando lo pida, escribe: 18)
+```
+También puedes agregarlas desde el Dashboard de Vercel ([https://vercel.com/dashboard](https://vercel.com/dashboard)).
 
 ### 🔗 Endpoints API Disponibles
 
 #### Endpoint Principal: `/api/predict`
 **Método**: POST  
-**URL**: `https://tu-proyecto.vercel.app/api/predict`
+**URL**: `https://<tu-proyecto>.vercel.app/api/predict`
 
 **Entrada**:
-\`\`\`json
+```json
 {
   "title": "Efficacy of ACE inhibitors in reducing cardiovascular mortality",
   "abstract": "This study evaluates the effectiveness of ACE inhibitors in patients with cardiovascular disease..."
 }
-\`\`\`
+```
 
 **Salida**:
-\`\`\`json
+```json
 {
   "scores": {
     "Cardiovascular": 0.87,
@@ -72,21 +76,33 @@ vercel env add NODE_VERSION 18
   "processing_time": "0.15s",
   "terms_found": 12
 }
-\`\`\`
+```
 
 #### Endpoint de Lote: `/api/predict-batch`
 **Método**: POST  
-**URL**: `https://tu-proyecto.vercel.app/api/predict-batch`
+**URL**: `https://<tu-proyecto>.vercel.app/api/predict-batch`
 
-**Entrada CSV**:
-\`\`\`csv
-title,abstract
-"Cardiac surgery outcomes","Analysis of post-operative complications..."
-"Brain tumor classification","MRI-based classification of gliomas..."
-\`\`\`
+**Entrada JSON**:
+```json
+{
+  "articles": [
+    {
+      "title": "Cardiac arrhythmias treatment",
+      "abstract": "Study of beta-blockers effectiveness..."
+    },
+    {
+      "title": "Liver cirrhosis progression",
+      "abstract": "Analysis of hepatic fibrosis markers..."
+    }
+  ]
+}
+```
+
+**Entrada CSV**:  
+(Ver ejemplo completo en [docs/predict-batch-example.csv](docs/predict-batch-example.csv))
 
 **Salida**:
-\`\`\`json
+```json
 {
   "results": [
     {
@@ -104,23 +120,23 @@ title,abstract
   },
   "total_processed": 2
 }
-\`\`\`
+```
 
 ### 🧪 Ejemplos de Uso con cURL
 
 #### Clasificación Individual
-\`\`\`bash
-curl -X POST https://tu-proyecto.vercel.app/api/predict \
+```bash
+curl -X POST https://<tu-proyecto>.vercel.app/api/predict \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Neurobiología del sueño y su importancia",
     "abstract": "El sueño es un proceso fisiológico fascinante que involucra múltiples estructuras cerebrales y neurotransmisores..."
   }'
-\`\`\`
+```
 
 #### Clasificación por Lotes (JSON)
-\`\`\`bash
-curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
+```bash
+curl -X POST https://<tu-proyecto>.vercel.app/api/predict-batch \
   -H "Content-Type: application/json" \
   -d '{
     "articles": [
@@ -134,19 +150,19 @@ curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
       }
     ]
   }'
-\`\`\`
+```
 
 #### Clasificación por Lotes (CSV)
-\`\`\`bash
-curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
+```bash
+curl -X POST https://<tu-proyecto>.vercel.app/api/predict-batch \
   -H "Content-Type: text/csv" \
-  --data-binary @articles.csv
-\`\`\`
+  --data-binary @docs/predict-batch-example.csv
+```
 
 ### ⚙️ Configuración Técnica
 
 #### Archivo `vercel.json`
-\`\`\`json
+```json
 {
   "version": 2,
   "public": true,
@@ -178,10 +194,10 @@ curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
     }
   }
 }
-\`\`\`
+```
 
 #### Archivo `package.json` (Scripts de Despliegue)
-\`\`\`json
+```json
 {
   "name": "medclassify-ai",
   "scripts": {
@@ -192,45 +208,45 @@ curl -X POST https://tu-proyecto.vercel.app/api/predict-batch \
     "deploy-preview": "vercel"
   }
 }
-\`\`\`
+```
 
 ### 🔧 Comandos de Despliegue
 
 #### Despliegue de Producción
-\`\`\`bash
+```bash
 # Despliegue completo a producción
 npm run deploy
 
 # O directamente con Vercel CLI
 vercel --prod
-\`\`\`
+```
 
 #### Despliegue de Preview
-\`\`\`bash
+```bash
 # Despliegue de prueba (preview)
 npm run deploy-preview
 
 # O directamente
 vercel
-\`\`\`
+```
 
 #### Verificación del Despliegue
-\`\`\`bash
+```bash
 # Verificar estado del despliegue
 vercel ls
 
 # Ver logs en tiempo real
-vercel logs tu-proyecto.vercel.app
-\`\`\`
+vercel logs <tu-proyecto>.vercel.app
+```
 
 ### 🧪 Testing del Despliegue
 
 #### Script de Prueba Automatizada
-\`\`\`bash
+```bash
 # Crear script de prueba
 cat > test_deployment.sh << 'EOF'
 #!/bin/bash
-BASE_URL="https://tu-proyecto.vercel.app"
+BASE_URL="https://<tu-proyecto>.vercel.app"
 
 echo "Testing individual prediction..."
 curl -X POST $BASE_URL/api/predict \
@@ -247,7 +263,7 @@ EOF
 
 chmod +x test_deployment.sh
 ./test_deployment.sh
-\`\`\`
+```
 
 ### 📊 Monitoreo y Métricas
 
@@ -260,69 +276,71 @@ chmod +x test_deployment.sh
   - Uso de recursos
 
 #### Logs en Tiempo Real
-\`\`\`bash
+```bash
 # Ver logs de la aplicación
 vercel logs --follow
 
 # Filtrar logs por función
 vercel logs --follow --scope=api/predict.py
-\`\`\`
+```
 
 ### 🔒 Configuración de Seguridad
 
 #### CORS y Headers
 Los endpoints ya incluyen configuración CORS:
-\`\`\`python
+```python
 self.send_header('Access-Control-Allow-Origin', '*')
 self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
 self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-\`\`\`
+```
 
 #### Rate Limiting (Opcional)
-\`\`\`bash
-# Configurar límites en Vercel
-vercel env add RATE_LIMIT_REQUESTS 100
-vercel env add RATE_LIMIT_WINDOW 60
-\`\`\`
+> **Nota:** Los límites de rate limiting deben ser implementados en el código backend o mediante funciones edge en Vercel. Las siguientes líneas son para definir valores de entorno, pero debes tener lógica en tu API para usarlas.
+```bash
+vercel env add RATE_LIMIT_REQUESTS
+# (cuando lo pida, escribe: 100)
+vercel env add RATE_LIMIT_WINDOW
+# (cuando lo pida, escribe: 60)
+```
 
 ### 🚨 Troubleshooting
 
 #### Problemas Comunes
 
 1. **Error de Python Runtime**:
-\`\`\`bash
+```bash
 # Verificar versión de Python en vercel.json
 "runtime": "python3.9"
-\`\`\`
+```
 
 2. **Timeout en Requests**:
-\`\`\`bash
+```bash
 # Optimizar tiempo de procesamiento
 # Los endpoints están optimizados para <10s
-\`\`\`
+```
 
 3. **Errores de CORS**:
-\`\`\`bash
+```bash
 # Verificar headers en las respuestas API
 # Ya configurados en el código
-\`\`\`
+```
 
 #### Comandos de Diagnóstico
-\`\`\`bash
+```bash
 # Verificar configuración
-vercel inspect tu-proyecto.vercel.app
+vercel inspect <tu-proyecto>.vercel.app
 
 # Revisar builds
 vercel builds
 
 # Descargar logs
-vercel logs tu-proyecto.vercel.app > deployment.log
-\`\`\`
+vercel logs <tu-proyecto>.vercel.app > deployment.log
+```
 
 ### 📱 Interfaz Web
 
 #### URL Principal
-- **Aplicación**: https://tu-proyecto.vercel.app
+- **Aplicación**: https://<tu-proyecto>.vercel.app
 - **Características**:
   - Clasificación en tiempo real
   - Carga de archivos CSV/PDF/TXT
@@ -339,9 +357,9 @@ vercel logs tu-proyecto.vercel.app > deployment.log
 ### 🎯 URLs de Ejemplo
 
 Una vez desplegado, las URLs serán:
-- **App Principal**: `https://medclassify-ai.vercel.app`
-- **API Individual**: `https://medclassify-ai.vercel.app/api/predict`
-- **API Lotes**: `https://medclassify-ai.vercel.app/api/predict-batch`
+- **App Principal**: `https://<tu-proyecto>.vercel.app`
+- **API Individual**: `https://<tu-proyecto>.vercel.app/api/predict`
+- **API Lotes**: `https://<tu-proyecto>.vercel.app/api/predict-batch`
 
 ### 📋 Checklist de Despliegue
 
@@ -357,6 +375,8 @@ Una vez desplegado, las URLs serán:
 
 **¡Tu aplicación de clasificación médica está lista para producción en Vercel!** 🚀
 
+---
+
 ## 📊 Evaluación y Predicción
 
 Este repositorio incluye el script `evaluate_and_predict.py` para evaluar el modelo entrenado sobre un archivo CSV y generar las predicciones requeridas por la convocatoria.
@@ -367,31 +387,24 @@ El archivo debe contener las columnas obligatorias:
 - `abstract` - Resumen/abstract del artículo
 - `group` - Etiqueta real del dominio médico
 
-### Ejemplo de CSV de entrada
-\`\`\`csv
-title,abstract,group
-"Efficacy of ACE inhibitors in reducing cardiovascular mortality","This study evaluates the effectiveness of ACE inhibitors in patients with heart failure and reduced ejection fraction...","Cardiovascular"
-"Neurobiología del sueño y su importancia","El sueño es un proceso fisiológico fascinante que involucra múltiples estructuras cerebrales y neurotransmisores...","Neurológico"
-"Hepatic fibrosis progression markers","Analysis of biomarkers for hepatic fibrosis progression in patients with chronic liver disease and cirrhosis...","Hepatorrenal"
-"Breast cancer treatment outcomes","Evaluation of chemotherapy effectiveness in triple-negative breast cancer patients with adjuvant therapy...","Oncológico"
-\`\`\`
+> Ejemplo completo de CSV: ver [docs/test-input-example.csv](docs/test-input-example.csv)
 
 ### Uso del Script de Evaluación
 
 #### 1. Preparación del entorno
-\`\`\`bash
+```bash
 # Crear entorno virtual
 python -m venv venv
 source venv/bin/activate  # En Windows: venv\Scripts\activate
 
 # Instalar dependencias
 pip install -r requirements.txt
-\`\`\`
+```
 
 #### 2. Ejecutar evaluación y predicción
-\`\`\`bash
+```bash
 python evaluate_and_predict.py --input data/test.csv --model models/best_model.joblib --out-dir outputs
-\`\`\`
+```
 
 #### 3. Parámetros del script
 - `--input`: Ruta al archivo CSV de entrada (obligatorio)
@@ -403,80 +416,27 @@ python evaluate_and_predict.py --input data/test.csv --model models/best_model.j
 El script genera los siguientes archivos en el directorio de salida:
 
 #### 1. `predictions.csv`
-Archivo CSV con una columna adicional `group_predicted`:
-\`\`\`csv
-title,abstract,group,group_predicted
-"Efficacy of ACE inhibitors...","This study evaluates...","Cardiovascular","Cardiovascular"
-"Neurobiología del sueño...","El sueño es un proceso...","Neurológico","Neurológico"
-\`\`\`
+Archivo CSV con una columna adicional `group_predicted`.
 
 #### 2. `metrics.json`
-Archivo JSON con métricas de desempeño:
-\`\`\`json
-{
-  "f1_weighted": 0.89,
-  "hamming_loss": 0.11,
-  "exact_match": 0.85,
-  "labels": ["Cardiovascular", "Neurológico", "Hepatorrenal", "Oncológico"],
-  "precision_per_label": [0.92, 0.88, 0.85, 0.90],
-  "recall_per_label": [0.90, 0.87, 0.83, 0.88],
-  "f1_per_label": [0.91, 0.87, 0.84, 0.89]
-}
-\`\`\`
+Archivo JSON con métricas de desempeño.
 
 #### 3. `confusion_matrix.png`
 Matriz de confusión visual guardada como imagen PNG.
-
-### Métricas en Consola
-
-Durante la ejecución, el script muestra:
-
-\`\`\`bash
-=== Métricas de Desempeño ===
-F1 weighted: 0.89
-Hamming Loss: 0.11
-Exact Match: 0.85
-
-Saved predictions to outputs/predictions.csv
-Saved metrics to outputs/metrics.json
-Saved confusion matrix to outputs/confusion_matrix.png
-\`\`\`
-
-### Ejemplo Completo de Ejecución
-
-\`\`\`bash
-# 1. Preparar datos de prueba
-mkdir -p data
-cat > data/test.csv << 'EOF'
-title,abstract,group
-"Cardiac arrhythmias in elderly patients","Study of atrial fibrillation management in patients over 65 years old with comorbidities","Cardiovascular"
-"Sleep disorders and cognitive function","Analysis of the relationship between sleep quality and memory consolidation in young adults","Neurológico"
-"Liver transplant outcomes","Evaluation of post-transplant survival rates and complications in hepatocellular carcinoma patients","Hepatorrenal"
-"Chemotherapy resistance mechanisms","Investigation of drug resistance pathways in metastatic colorectal cancer treatment","Oncológico"
-EOF
-
-# 2. Ejecutar evaluación
-python evaluate_and_predict.py --input data/test.csv --model models/best_model.joblib --out-dir results
-
-# 3. Verificar resultados
-ls results/
-# predictions.csv  metrics.json  confusion_matrix.png
-
-# 4. Ver métricas
-cat results/metrics.json | python -m json.tool
-\`\`\`
 
 ### 🧪 Tests Automatizados
 
 Para validar que el script funciona correctamente:
 
-\`\`\`bash
+```bash
 # Ejecutar tests unitarios
 pytest tests/test_pipeline.py -v
 
 # Ejecutar todos los tests
 pytest tests/ -v
-\`\`\`
+```
+
+---
 
 Los tests verifican:
 - ✅ Validación de formato CSV (columnas obligatorias)
@@ -509,8 +469,12 @@ Este script ha sido diseñado para ser completamente ejecutable siguiendo las in
 ####  ✅ **ANEXOS**:
 **PDFS PRUEBAS Y ARCHIVOS**:
 
-https://drive.google.com/drive/folders/1AKowp30v4rbkmP7cesEr3XCv5J1e-iRS?usp=sharing 
+También puedes consultar archivos de ejemplo y material adicional en:  
+https://drive.google.com/drive/folders/1AKowp30v4rbkmP7cesEr3XCv5J1e-iRS?usp=sharing
 
+**Proyecto completo en PDF:**  
+https://drive.google.com/file/d/16djnpirWCfz9X6JlSxdw6DSxMtCa3Iof/view?usp=sharing
+...
 
 **Solución de Clasificación Biomédica AI + Data Challenge 2025**
 **MANUEL PALACIO / MARIA CAMILA ZAPATA 📱WhatsApp: +57 3006101221**
@@ -623,35 +587,6 @@ F1-Score Ponderado (métrica principal): Promedio de F1-Score balanceado por la 
 Exact Match Ratio: El porcentaje de documentos para los cuales todas las etiquetas predichas son correctas. Un valor de 0.847 significa que el modelo acertó todas las etiquetas de un documento en casi el 85% de los casos. Esto es una métrica clave para el usuario final, ya que representa la fiabilidad total de la predicción, lo que se traduce directamente en una reducción del tiempo de revisión manual.
 Hamming Loss: La proporción de etiquetas incorrectamente asignadas. Un valor bajo (0.089) indica que el modelo comete pocos errores, lo que significa que solo el 8.9% de las etiquetas predichas son incorrectas. Esto es un indicador de la calidad global de la clasificación y una medida de los "errores parciales" del sistema.
 ROC-AUC por clase: Mide el rendimiento de clasificación para cada dominio médico individual. Esto permite identificar las fortalezas y debilidades del modelo en cada área, como se ve en la tabla de métricas detalladas.
-Resultados Principales:
-F1-Score Ponderado: 0.87
-Exact Match: 0.847
-Hamming Loss: 0.089
-Dominio
-Precisión
-Recall
-F1-Score
-Soporte
-Cardiovascular
-0.89
-0.91
-0.90
-975
-Neurológico
-0.86
-0.84
-0.85
-893
-Oncológico
-0.84
-0.87
-0.85
-865
-Hepatorrenal
-0.82
-0.79
-0.80
-785
 
 
 #### 🚀 5. Despliegue y Próximos Pasos
@@ -676,7 +611,10 @@ MANUEL PALACIO / MARIA CAMILA ZAPATA 📱WhatsApp: +57 3006101221
 Núcleo Colectivo + Línea Médica Yolombó 
 Desarrollado para el AI Data Challenge de TechSphere Colombia
 
-📂Repositorio GitHub: [https://github.com/dmanuelpalacio/MedClassifyAI ](https://github.com/dmanuelpalacio/v0-MedClassify-AI)
+📂Repositorio GitHub:
+[https://github.com/dmanuelpalacio/MedClassifyAI ]
+(https://github.com/dmanuelpalacio/v0-MedClassify-AI)
+
 Medellín, Colombia. Todos los derechos reservados.
 © 2025
 
