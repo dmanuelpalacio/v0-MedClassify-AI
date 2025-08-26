@@ -40,6 +40,8 @@ Clasificar automáticamente artículos médicos (título + resumen) en cuatro do
 # Clonar repositorio
 git clone https://github.com/tu-usuario/medclassify-ai.git
 cd medclassify-ai
+https://github.com/dmanuelpalacio/v0-MedClassify-AI/tree/main
+https://v0.app/chat/medical-literature-classification-eLoH6Tv6V7G?b=b_XeKeP0FGLtK
 
 # Configurar entorno
 make setup
@@ -272,11 +274,17 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 
 ## 📞 Contacto
 
-- **Equipo**: MedClassify AI Team
-- **Email**: medclassify@techsphere.com
-- **Challenge**: TechSphere AI Challenge 2025
-- **Documentación**: [Docs completas](https://medclassify-ai.readthedocs.io)
+---
 
+**Contacto y créditos:**
+MANUEL PALACIO / MARIA CAMILA ZAPATA 📱WhatsApp: +57 3006101221  
+Núcleo Colectivo + Línea Médica Yolombó  
+Desarrollado para el AI Data Challenge de TechSphere Colombia  
+Repositorio GitHub: https://github.com/dmanuelpalacio/v0-MedClassify-AI
+
+Medellín, Colombia. Todos los derechos reservados. © 2025
+
+```
 ---
 
 **🏥 MedClassify AI - Revolucionando la clasificación de literatura médica con inteligencia artificial**
