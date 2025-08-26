@@ -20,6 +20,7 @@ vercel --version
 git clone [https://github.com/medclassify-ai/medical-literature-classification](https://github.com/dmanuelpalacio/v0-MedClassify-AI)
 cd medical-literature-classification
 
+https://v0.app/chat/medical-literature-classification-eLoH6Tv6V7G?b=b_XeKeP0FGLtK
 
 # Instalar dependencias
 npm install
@@ -517,6 +518,8 @@ Núcleo Colectivo + Línea Médica Yolombó
 
 **Desarrollado para el AI Data Challenge de TechSphere Colombia**
 📂Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI 
+https://v0.app/chat/medical-literature-classification-eLoH6Tv6V7G?b=b_XeKeP0FGLtK
+
 Medellín, Colombia. Todos los derechos reservados.
 © 2025
 
@@ -673,7 +676,7 @@ MANUEL PALACIO / MARIA CAMILA ZAPATA 📱WhatsApp: +57 3006101221
 Núcleo Colectivo + Línea Médica Yolombó 
 Desarrollado para el AI Data Challenge de TechSphere Colombia
 
-📂Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI 
+📂Repositorio GitHub: [https://github.com/dmanuelpalacio/MedClassifyAI ](https://github.com/dmanuelpalacio/v0-MedClassify-AI)
 Medellín, Colombia. Todos los derechos reservados.
 © 2025
 
