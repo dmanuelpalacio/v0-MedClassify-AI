@@ -17,8 +17,9 @@ vercel --version
 #### 1. Preparación del Proyecto
 \`\`\`bash
 # Clonar y preparar el repositorio
-git clone https://github.com/medclassify-ai/medical-literature-classification
+git clone [https://github.com/medclassify-ai/medical-literature-classification](https://github.com/dmanuelpalacio/v0-MedClassify-AI)
 cd medical-literature-classification
+
 
 # Instalar dependencias
 npm install
@@ -504,22 +505,23 @@ Este script ha sido diseñado para ser completamente ejecutable siguiendo las in
 3. Tener el modelo entrenado disponible en `models/best_model.joblib`
 4. Usar el formato CSV exacto especificado
 
-ANEXOS
-PDFS PRUEBAS Y ARCHIVOS
+####  ✅ **ANEXOS**:
+**PDFS PRUEBAS Y ARCHIVOS**:
+
 https://drive.google.com/drive/folders/1AKowp30v4rbkmP7cesEr3XCv5J1e-iRS?usp=sharing 
 
 
-Solución de Clasificación Biomédica AI + Data Challenge 2025
-MANUEL PALACIO / MARIA CAMILA ZAPATA 📱WhatsApp: +57 3006101221
+**Solución de Clasificación Biomédica AI + Data Challenge 2025**
+**MANUEL PALACIO / MARIA CAMILA ZAPATA 📱WhatsApp: +57 3006101221**
 Núcleo Colectivo + Línea Médica Yolombó 
 
-Desarrollado para el AI Data Challenge de TechSphere Colombia
+**Desarrollado para el AI Data Challenge de TechSphere Colombia**
 📂Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI 
 Medellín, Colombia. Todos los derechos reservados.
 © 2025
 
 
-🧠 MedClassify-AI
+#### **🧠 MedClassify-AI**
 
 Proyecto MedClassify AI: Sistema de Clasificación Multi Etiqueta de Literatura Médica
 Problema. Clasificar automáticamente literatura médica (título + resumen) en cuatro dominios: Cardiovascular, Neurológico, Hepatorrenal, Oncológico
@@ -530,7 +532,7 @@ Convocatoria: Tech Sphere – AI Data Challenge 2025
 Repositorio: dmanuelpalacio/v0-MedClassify-AI
 Prototipo visual: V0 App – Medical Literature Classification
 
-🎯 Resumen Ejecutivo
+#### 🎯 Resumen Ejecutivo
 
 MedClassify AI es un sistema avanzado de clasificación automática de literatura médica desarrollado para el TechSphere AI Challenge 2025. Su objetivo principal es categorizar de forma eficiente y precisa artículos científicos (título + resumen) en cuatro dominios especializados: Cardiovascular, Neurológico, Hepatorrenal y Oncológico.
 Este proyecto integra un pipeline de PLN con un robusto modelo de machine learning, superando las métricas del desafío con un F1-Score ponderado de 0.87. El logro de este puntaje, junto con un Exact Match de 0.847, valida la robustez del enfoque técnico seleccionado. Con una arquitectura modular, interpretable y escalable, MedClassify AI se establece como una herramienta clave para optimizar la toma de decisiones clínicas y la investigación científica, reduciendo significativamente la carga de trabajo manual y mejorando la precisión en la curación de información.
@@ -544,10 +546,10 @@ Ineficiencia en procesos de búsqueda y organización: Sin un sistema automatiza
 En respuesta a estos desafíos, MedClassify AI proporciona una solución automatizada que aborda la fragmentación de datos, reduce la sobrecarga cognitiva y optimiza radicalmente la búsqueda de información, mejorando así la gestión documental y la eficiencia en la investigación.
 
 
-⚙️ 2. Arquitectura de la Solución
+#### ⚙️ 2. Arquitectura de la Solución
 La arquitectura del sistema es modular y sigue un pipeline de datos claro, diseñado para la escalabilidad y la reproducibilidad. Cada módulo cumple una función específica, permitiendo que el sistema sea fácil de mantener, actualizar y auditar.
 
-Pipeline de Datos:
+#### Pipeline de Datos:
 Ingesta: El sistema recibe documentos médicos en formato texto, generalmente como una combinación del título y el resumen. Este módulo inicial puede ser adaptable para procesar datos de diversas fuentes, incluyendo archivos planos (CSV, JSON), bases de datos o incluso directamente desde APIs de repositorios de investigación.
 Preprocesamiento: El texto crudo se somete a un riguroso proceso de limpieza y normalización. En esta etapa se eliminan caracteres especiales, se corrigen inconsistencias de formato, y se estandariza el texto para la vectorización, asegurando que el modelo no se vea afectado por "ruido" como acentos, puntuación o diferentes capitalizaciones.
 Extracción de Características: En este paso, los textos limpios se convierten en vectores numéricos. Se utiliza TF-IDF (Term Frequency-Inverse Document Frequency), una técnica que no solo cuenta la frecuencia de cada palabra en un documento, sino que también pondera su relevancia en relación con todo el corpus. De esta manera, términos comunes como "estudio" reciben un peso bajo, mientras que términos especializados como "cardiomiopatía" o "glioma" reciben un peso alto, lo que los hace más discriminativos.
@@ -569,7 +571,7 @@ Diagrama de Flujo de Datos
 ```
 
 
-🧠 3. Metodología Técnica
+#### 🧠 3. Metodología Técnica
 
 3.1. Preprocesamiento de Texto
 La solución integra un pipeline de preprocesamiento de texto modular y robusto, diseñado específicamente para abordar las complejidades del vocabulario biomédico y la variabilidad inherente al lenguaje médico. Este pipeline incluye los siguientes pasos:
@@ -581,11 +583,12 @@ Vectorización: La conversión del texto a vectores numéricos es el paso final 
 
 
 
-3.2. Selección y Diseño del Modelo
+#### 🎯 3.2. Selección y Diseño del Modelo
 Modelo Principal: Se optó por una Regresión Logística Multietiqueta por su interpretabilidad, eficiencia y robustez. A diferencia de modelos de "caja negra" más complejos como las redes neuronales profundas, los coeficientes de un modelo de regresión logística son directamente explicables. Esto permite a los expertos médicos entender por qué una predicción fue realizada, por ejemplo, asociando la etiqueta "Oncológico" con la alta frecuencia de términos como "tumor" y "quimioterapia". Esta transparencia es vital para generar confianza y asegurar la adopción del sistema en un entorno clínico. La configuración multi_class='ovr' (One-vs-Rest) permite que el modelo entrene un clasificador binario para cada etiqueta de dominio de forma independiente, lo cual es ideal para el problema de clasificación multietiqueta.
 Enfoques Alternativos: Se evaluaron modelos de aprendizaje profundo más complejos como transformadores (BioBERT). Aunque estos modelos pueden ofrecer un rendimiento ligeramente superior en tareas de clasificación de lenguaje, requieren una infraestructura considerable (GPUs potentes) y tiempos de entrenamiento prolongados, lo que se consideró un costo excesivo para los beneficios marginales en el contexto de este desafío. La Regresión Logística, por el contrario, demostró ser una solución pragmática, eficiente y suficientemente precisa para alcanzar las métricas objetivo.
 Baseline: Se comparó el modelo entrenado con un modelo de Zero-Shot Learning que no requería entrenamiento específico. Esta comparación fue crucial para demostrar la superioridad del enfoque de "fine-tuning", ya que el modelo zero-shot, al no estar especializado en el vocabulario del desafío, mostró un desempeño limitado, especialmente en la clasificación de clases menos comunes y en la identificación de co-ocurrencias.
-Diagrama de Decisión (árbol comparativo)
+
+#### Diagrama de Decisión (árbol comparativo)
                Selección de Modelo
                        │
  ┌─────────────────────┼─────────────────────┐
@@ -597,7 +600,7 @@ Regresión Logística                  Modelos Complejos (Transformers)
 ✔ Transparencia                          ✘ Alto costo computacional
 ✔ Fácil despliegue                       ✘ Lento entrenamiento
 
-Esquema Modular de Comparación
+#### Esquema Modular de Comparación
 Regresión Logística Multietiqueta
 ✅ Interpretación clara de coeficientes
 ✅ Entrenamiento rápido
@@ -610,7 +613,7 @@ Transformers (BioBERT)
 ❌ Baja interpretabilidad
 
 
-📊 4. Validación y Métricas
+#### 📊 4. Validación y Métricas
 El desempeño del sistema se evaluó con métricas especializadas, cruciales para problemas de clasificación multietiqueta, proporcionando una visión completa de su rendimiento.
 
 F1-Score Ponderado (métrica principal): Promedio de F1-Score balanceado por la frecuencia de cada clase. Un puntaje de 0.87 es un resultado robusto, que indica un buen equilibrio entre precisión y exhaustividad para el conjunto completo de dominios.
@@ -648,7 +651,7 @@ Hepatorrenal
 785
 
 
-🚀 5. Despliegue y Próximos Pasos
+#### 🚀 5. Despliegue y Próximos Pasos
 El proyecto está diseñado para ser desplegado como una API web y una aplicación demo interactiva, facilitando su integración en sistemas de gestión hospitalaria. La Guía de Despliegue en Vercel detalla los pasos para hacer la solución accesible y funcional en un entorno de producción.
 
 Próximos Pasos y Mejoras Futuras:
@@ -657,10 +660,10 @@ Escalabilidad del Dataset: Entrenar el modelo con datasets hospitalarios más gr
 Soporte Multilingüe: Explorar la traducción automática médica para procesar reportes bilingües. Aunque el modelo actual está optimizado para el español, su adaptación a otros idiomas permitiría su uso a nivel global, abriendo las puertas a mercados de investigación y atención médica en todo el mundo.
 Interfaz de Usuario Mejorada: Diseñar un panel visual interactivo con más funcionalidades para médicos e investigadores. Se podrían incluir características como visualización de las palabras más relevantes para la clasificación, un historial de consultas con feedback de los usuarios y un dashboard de monitoreo de rendimiento en tiempo real, transformando el prototipo en una herramienta de análisis de datos clínicos robusta.
 
-🤝 6. Conclusión y Lecciones Aprendidas
+#### 🤝 6. Conclusión y Lecciones Aprendidas
  MedClassify AI es una solución robusta que demuestra la viabilidad de la automatización de la clasificación multietiqueta de reportes médicos. El uso de un modelo entrenado supera consistentemente a los modelos zero-shot, validando la metodología del proyecto. Con una arquitectura sólida y un enfoque claro en la interpretabilidad y la escalabilidad, este proyecto sienta una base sólida para futuras innovaciones en el campo de la inteligencia artificial aplicada a la salud en Colombia.
 
-7. Experiencia y Motivación del Proyecto
+#### 🎯 7. Experiencia y Motivación del Proyecto
 El descubrimiento de la convocatoria AI + Data Challenge – Tech Sphere 2025 no fue solo una oportunidad, sino una perfecta intersección entre mi formación en diseño gráfico y mi interés en la creación de aplicaciones con impacto social. La temática de salud y diagnóstico resonó profundamente conmigo, ya que se alinea directamente con los proyectos que hemos explorado en Núcleo Colectivo y Línea Médica. Ver un problema tan concreto y relevante me motivó a iniciar este proyecto propio, buscando una manera de aplicar la inteligencia artificial para generar una solución real y tangible.
 El proceso de desarrollo fue un viaje de aprendizaje acelerado. Inicialmente, recurrí a herramientas conversacionales como Demi y ChatGPT para la generación de código y a GitHub para la gestión de versiones. Sin embargo, la plataforma V0 se destacó de manera impresionante. A diferencia de otras plataformas que había probado, incluso en sus versiones Pro o Platinum, V0 me sorprendió por su fluidez. Su capacidad para conectar directamente con GitHub, su interfaz intuitiva y su potencia para crear aplicaciones más completas, me permitieron ir más allá de los prototipos conceptuales para desarrollar una solución funcional.
 
