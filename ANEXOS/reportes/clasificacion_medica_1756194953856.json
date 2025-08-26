@@ -1,0 +1,84 @@
+{
+  "title": "Systematic Review: Precision Medicine Approaches in Cardiovascular Disease Management",
+  "abstract": "This systematic review examines the current state of precision medicine in cardiovascular care, analyzing genomic, proteomic, and metabolomic approaches to personalized treatment. We reviewed 78 studies encompassing 50,000 patients with various cardiovascular conditions. Findings indicate that genetic risk scores combined with traditional risk factors improve prediction accuracy by 15-20%. Pharmacogenomic testing for antiplatelet therapy shows clinical utility in specific populations. Future directions include integration of multi-omics data and artificial intelligence for enhanced clinical decision-making.",
+  "classification": [
+    {
+      "domain": "Cardiovascular",
+      "confidence": 0.6937738600170787
+    },
+    {
+      "domain": "Oncológico",
+      "confidence": 0.11801848043065015
+    },
+    {
+      "domain": "Neurológico",
+      "confidence": 0.09478485169453524
+    },
+    {
+      "domain": "Hepatorrenal",
+      "confidence": 0.09342280785773582
+    }
+  ],
+  "primaryDomain": "Cardiovascular",
+  "reliability": {
+    "score": 0.6635487175119568,
+    "level": "Media",
+    "factors": [
+      {
+        "factor": "Fuente Identificada",
+        "score": "+10%",
+        "color": "text-blue-600"
+      },
+      {
+        "factor": "Documento Procesado",
+        "score": "+15%",
+        "color": "text-green-600"
+      },
+      {
+        "factor": "Terminología Médica Detectada",
+        "score": "+20%",
+        "color": "text-green-600"
+      },
+      {
+        "factor": "Estructura Académica",
+        "score": "+10%",
+        "color": "text-blue-600"
+      }
+    ]
+  },
+  "summary": {
+    "executiveSummary": "Este artículo se clasifica principalmente en el dominio cardiovascular con una confianza del 69.4%. El análisis identifica elementos clave relacionados con enfermedades del corazón y sistema circulatorio.",
+    "keyFindings": [
+      "Dominio principal: Cardiovascular (69.4% confianza)",
+      "Confiabilidad de la fuente: Media",
+      "Términos clave identificados: cardiovascular",
+      "Tiempo de procesamiento: 2.4s"
+    ],
+    "clinicalRelevance": "Alto impacto en práctica cardiológica y medicina preventiva",
+    "methodologyAssessment": "Meta-análisis o revisión sistemática - Evidencia de alto nivel"
+  },
+  "relatedStudies": [
+    {
+      "title": "ASCVD Risk Calculator Validation Studies",
+      "journal": "Circulation",
+      "relevance": "Herramientas de evaluación de riesgo cardiovascular",
+      "url": "https://www.ahajournals.org/journal/circ",
+      "impact": "Alto"
+    },
+    {
+      "title": "Heart Failure Guidelines - ESC/AHA",
+      "journal": "European Heart Journal",
+      "relevance": "Guías clínicas actualizadas en cardiología",
+      "url": "https://academic.oup.com/eurheartj",
+      "impact": "Muy Alto"
+    },
+    {
+      "title": "Precision Medicine in Cardiology",
+      "journal": "Nature Reviews Cardiology",
+      "relevance": "Medicina personalizada cardiovascular",
+      "url": "https://www.nature.com/nrcardio/",
+      "impact": "Alto"
+    }
+  ],
+  "timestamp": "2025-08-26T07:55:53.610Z"
+}

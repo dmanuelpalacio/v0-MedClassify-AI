@@ -1,0 +1,77 @@
+{
+  "overall_metrics": {
+    "f1Score": 0.89,
+    "precision": 0.91,
+    "recall": 0.87,
+    "accuracy": 0.93,
+    "exactMatch": 0.84,
+    "hammingLoss": 0.12,
+    "rocAucMacro": 0.91
+  },
+  "domain_metrics": [
+    {
+      "domain": "Cardiovascular",
+      "f1": 0.92,
+      "precision": 0.94,
+      "recall": 0.9,
+      "samples": 1250,
+      "color": "text-red-500",
+      "rocAuc": 0.94
+    },
+    {
+      "domain": "Neurológico",
+      "f1": 0.88,
+      "precision": 0.89,
+      "recall": 0.87,
+      "samples": 980,
+      "color": "text-blue-500",
+      "rocAuc": 0.89
+    },
+    {
+      "domain": "Hepatorrenal",
+      "f1": 0.85,
+      "precision": 0.87,
+      "recall": 0.83,
+      "samples": 750,
+      "color": "text-green-500",
+      "rocAuc": 0.87
+    },
+    {
+      "domain": "Oncológico",
+      "f1": 0.91,
+      "precision": 0.93,
+      "recall": 0.89,
+      "samples": 1420,
+      "color": "text-purple-500",
+      "rocAuc": 0.93
+    }
+  ],
+  "confusion_matrix": [
+    [
+      1175,
+      32,
+      18,
+      25
+    ],
+    [
+      41,
+      853,
+      22,
+      64
+    ],
+    [
+      15,
+      28,
+      623,
+      84
+    ],
+    [
+      28,
+      73,
+      56,
+      1263
+    ]
+  ],
+  "total_samples": 4400,
+  "generated_at": "2025-08-26T07:54:01.247Z"
+}

@@ -1,0 +1,84 @@
+{
+  "title": "Multi-Center Analysis of Treatment Outcomes in Acute Myeloid Leukemia",
+  "abstract": "This large-scale retrospective analysis examines treatment outcomes in 2,500 acute myeloid leukemia (AML) patients across 15 medical centers. We evaluated the impact of cytogenetic risk stratification, age, performance status, and treatment protocols on overall survival and disease-free survival. Results show significant improvements in outcomes with targeted therapies in specific genetic subgroups. Older patients (>65 years) benefit from hypomethylating agents combined with venetoclax. The study provides evidence for personalized treatment approaches based on molecular profiling.",
+  "classification": [
+    {
+      "domain": "Oncológico",
+      "confidence": 0.8992129908870662
+    },
+    {
+      "domain": "Neurológico",
+      "confidence": 0.24908963650114382
+    },
+    {
+      "domain": "Cardiovascular",
+      "confidence": 0.20805144200463044
+    },
+    {
+      "domain": "Hepatorrenal",
+      "confidence": 0.18299090935977694
+    }
+  ],
+  "primaryDomain": "Oncológico",
+  "reliability": {
+    "score": 0.824303681628693,
+    "level": "Alta",
+    "factors": [
+      {
+        "factor": "Fuente Identificada",
+        "score": "+10%",
+        "color": "text-blue-600"
+      },
+      {
+        "factor": "Documento Procesado",
+        "score": "+15%",
+        "color": "text-green-600"
+      },
+      {
+        "factor": "Terminología Médica Detectada",
+        "score": "+20%",
+        "color": "text-green-600"
+      },
+      {
+        "factor": "Estructura Académica",
+        "score": "+10%",
+        "color": "text-blue-600"
+      }
+    ]
+  },
+  "summary": {
+    "executiveSummary": "Este artículo se clasifica principalmente en el dominio oncológico con una confianza del 89.9%. El análisis identifica elementos clave relacionados con cáncer y tumores malignos.",
+    "keyFindings": [
+      "Dominio principal: Oncológico (89.9% confianza)",
+      "Confiabilidad de la fuente: Alta",
+      "Términos clave identificados: ",
+      "Tiempo de procesamiento: 2.2s"
+    ],
+    "clinicalRelevance": "Crítico para oncología, hematología y cuidados paliativos",
+    "methodologyAssessment": "Metodología por evaluar - Revisar diseño del estudio"
+  },
+  "relatedStudies": [
+    {
+      "title": "Immunotherapy Advances",
+      "journal": "Nature Cancer",
+      "relevance": "Inmunoterapia en diferentes tipos de cáncer",
+      "url": "https://www.nature.com/natcancer/",
+      "impact": "Muy Alto"
+    },
+    {
+      "title": "Precision Oncology Trials",
+      "journal": "Journal of Clinical Oncology",
+      "relevance": "Medicina de precisión en oncología",
+      "url": "https://ascopubs.org/journal/jco",
+      "impact": "Muy Alto"
+    },
+    {
+      "title": "Cancer Survivorship Care",
+      "journal": "The Lancet Oncology",
+      "relevance": "Cuidados de supervivencia en cáncer",
+      "url": "https://www.thelancet.com/journals/lanonc",
+      "impact": "Alto"
+    }
+  ],
+  "timestamp": "2025-08-26T07:37:09.399Z"
+}
