@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "public": true,
   "functions": {
     "api/predict.py": {
       "runtime": "python3.9"
@@ -17,15 +16,6 @@
     {
       "src": "/api/predict-batch",
       "dest": "/api/predict-batch.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
     }
-  ],
-  "build": {
-    "env": {
-      "PYTHONPATH": "."
-    }
-  }
+  ]
 }
