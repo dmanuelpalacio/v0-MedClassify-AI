@@ -767,94 +767,102 @@ export default function MedicalClassificationApp() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <header className="border-b backdrop-blur-sm shadow-lg bg-gradient-to-r from-sky-800 to-blue-900">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="p-4 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl shadow-xl">
-                <Brain className="h-10 w-10 text-white" />
+        <div className="container mx-auto px-4 py-4 md:py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="p-2 md:p-4 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl md:rounded-2xl shadow-xl">
+                <Brain className="h-6 w-6 md:h-10 md:w-10 text-white" />
               </div>
-              <div>
-                <h1 className="font-bold text-5xl text-white mb-2">MedClassify AI</h1>
-                <p className="text-blue-100 text-xl font-medium">Sistema de Clasificación de Literatura Médica</p>
-                <p className="text-blue-200 text-sm mt-1">
+              <div className="text-center md:text-left">
+                <h1 className="font-bold text-2xl md:text-5xl text-white mb-1 md:mb-2">MedClassify AI</h1>
+                <p className="text-blue-100 text-sm md:text-xl font-medium">
+                  Sistema de Clasificación de Literatura Médica
+                </p>
+                <p className="text-blue-200 text-xs md:text-sm mt-1 hidden md:block">
                   Clasificación automática en dominios: Cardiovascular, Neurológico, Hepatorrenal y Oncológico
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-xl border border-orange-200 shadow-lg">
-              <Trophy className="h-6 w-6 text-orange-600" />
-              <span className="text-lg font-bold text-orange-800">TechSphere AI Challenge 2025</span>
+            <div className="flex items-center gap-2 md:gap-3 px-3 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg md:rounded-xl border border-orange-200 shadow-lg">
+              <Trophy className="h-4 w-4 md:h-6 md:w-6 text-orange-600" />
+              <span className="text-sm md:text-lg font-bold text-orange-800">TechSphere AI Challenge 2025</span>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-4 gap-6">
+      <div className="container mx-auto px-4 py-4 md:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6">
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <Card className="sticky top-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Activity className="h-5 w-5 text-blue-500" />
+          <div className="lg:col-span-1 order-2 lg:order-1">
+            <Card className="lg:sticky lg:top-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base md:text-lg flex items-center gap-2">
+                  <Activity className="h-4 w-4 md:h-5 md:w-5 text-blue-500" />
                   Navegación
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <Button
-                  variant={activeTab === "classify" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => setActiveTab("classify")}
-                >
-                  <FileText className="h-4 w-4 mr-2" />
-                  Clasificar Texto
-                </Button>
-                <Button
-                  variant={activeTab === "upload" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => setActiveTab("upload")}
-                >
-                  <Upload className="h-4 w-4 mr-2" />
-                  Cargar Archivo
-                </Button>
-                <Button
-                  variant={activeTab === "summary" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => setActiveTab("summary")}
-                >
-                  <Brain className="h-4 w-4 mr-2" />
-                  Resumen con IA
-                </Button>
-                <Button
-                  variant={activeTab === "metrics" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => setActiveTab("metrics")}
-                >
-                  <BarChart3 className="h-4 w-4 mr-2" />
-                  Métricas
-                </Button>
+                <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
+                  <Button
+                    variant={activeTab === "classify" ? "default" : "ghost"}
+                    className="w-full justify-start text-xs md:text-sm"
+                    onClick={() => setActiveTab("classify")}
+                  >
+                    <FileText className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                    Clasificar Texto
+                  </Button>
+                  <Button
+                    variant={activeTab === "upload" ? "default" : "ghost"}
+                    className="w-full justify-start text-xs md:text-sm"
+                    onClick={() => setActiveTab("upload")}
+                  >
+                    <Upload className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                    Cargar Archivo
+                  </Button>
+                  <Button
+                    variant={activeTab === "summary" ? "default" : "ghost"}
+                    className="w-full justify-start text-xs md:text-sm"
+                    onClick={() => setActiveTab("summary")}
+                  >
+                    <Brain className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                    Resumen con IA
+                  </Button>
+                  <Button
+                    variant={activeTab === "metrics" ? "default" : "ghost"}
+                    className="w-full justify-start text-xs md:text-sm"
+                    onClick={() => setActiveTab("metrics")}
+                  >
+                    <BarChart3 className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                    Métricas
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="mt-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-lg">Dominios Médicos</CardTitle>
-                <CardDescription>Categorías de clasificación disponibles</CardDescription>
+            <Card className="mt-4 md:mt-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base md:text-lg">Dominios Médicos</CardTitle>
+                <CardDescription className="text-xs md:text-sm">
+                  Categorías de clasificación disponibles
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3 md:space-y-4">
                 {medicalDomains.map((domain) => {
                   const Icon = domain.icon
                   return (
                     <div
                       key={domain.name}
-                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="flex items-start gap-2 md:gap-3 p-2 md:p-3 rounded-lg hover:bg-gray-50 transition-colors"
                     >
-                      <div className={`p-2 rounded-lg ${domain.bgColor}`}>
-                        <Icon className={`h-5 w-5 ${domain.color}`} />
+                      <div className={`p-1.5 md:p-2 rounded-lg ${domain.bgColor}`}>
+                        <Icon className={`h-4 w-4 md:h-5 md:w-5 ${domain.color}`} />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-sm">{domain.name}</h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{domain.description}</p>
+                        <h4 className="font-semibold text-xs md:text-sm">{domain.name}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed hidden md:block">
+                          {domain.description}
+                        </p>
                       </div>
                     </div>
                   )
@@ -864,7 +872,7 @@ export default function MedicalClassificationApp() {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 order-1 lg:order-2">
             {activeTab === "classify" && (
               <div className="space-y-6">
                 <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
@@ -907,10 +915,10 @@ export default function MedicalClassificationApp() {
 
                     <div className="border-t pt-6">
                       <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                        <Trophy className="h-5 w-5 text-orange-500" />
+                        <Trophy className="h-4 w-4 md:h-5 md:w-5 text-orange-500" />
                         Análisis de Confiabilidad de la Fuente
                       </h3>
-                      <div className="grid md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="journal" className="text-sm font-medium">
                             Revista/Journal
@@ -1016,11 +1024,11 @@ export default function MedicalClassificationApp() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                       {/* Resumen de Texto */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold flex items-center gap-2">
-                          <FileText className="h-5 w-5 text-blue-500" />
+                        <h3 className="text-base md:text-lg font-semibold flex items-center gap-2">
+                          <FileText className="h-4 w-4 md:h-5 md:w-5 text-blue-500" />
                           Resumir Texto
                         </h3>
                         <div className="space-y-2">
@@ -1056,8 +1064,8 @@ export default function MedicalClassificationApp() {
 
                       {/* Resumen de URL */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold flex items-center gap-2">
-                          <Upload className="h-5 w-5 text-green-500" />
+                        <h3 className="text-base md:text-lg font-semibold flex items-center gap-2">
+                          <Upload className="h-4 w-4 md:h-5 md:w-5 text-green-500" />
                           Resumir URL
                         </h3>
                         <div className="space-y-2">
@@ -1130,22 +1138,28 @@ export default function MedicalClassificationApp() {
                       </div>
 
                       {/* Detalles del Estudio */}
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="bg-yellow-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-yellow-800 mb-2">🔬 Metodología</h4>
-                          <p className="text-yellow-700 text-sm">{summaryResults.summary.methodology}</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-yellow-50 p-3 md:p-4 rounded-lg">
+                          <h4 className="font-semibold text-yellow-800 mb-2 text-sm md:text-base">🔬 Metodología</h4>
+                          <p className="text-yellow-700 text-xs md:text-sm">{summaryResults.summary.methodology}</p>
                         </div>
-                        <div className="bg-purple-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-purple-800 mb-2">🏥 Relevancia Clínica</h4>
-                          <p className="text-purple-700 text-sm">{summaryResults.summary.clinicalRelevance}</p>
+                        <div className="bg-purple-50 p-3 md:p-4 rounded-lg">
+                          <h4 className="font-semibold text-purple-800 mb-2 text-sm md:text-base">
+                            🏥 Relevancia Clínica
+                          </h4>
+                          <p className="text-purple-700 text-xs md:text-sm">
+                            {summaryResults.summary.clinicalRelevance}
+                          </p>
                         </div>
-                        <div className="bg-red-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-red-800 mb-2">⚠️ Limitaciones</h4>
-                          <p className="text-red-700 text-sm">{summaryResults.summary.limitations}</p>
+                        <div className="bg-red-50 p-3 md:p-4 rounded-lg">
+                          <h4 className="font-semibold text-red-800 mb-2 text-sm md:text-base">⚠️ Limitaciones</h4>
+                          <p className="text-red-700 text-xs md:text-sm">{summaryResults.summary.limitations}</p>
                         </div>
-                        <div className="bg-indigo-50 p-4 rounded-lg">
-                          <h4 className="font-semibold text-indigo-800 mb-2">🔮 Investigación Futura</h4>
-                          <p className="text-indigo-700 text-sm">{summaryResults.summary.futureResearch}</p>
+                        <div className="bg-indigo-50 p-3 md:p-4 rounded-lg">
+                          <h4 className="font-semibold text-indigo-800 mb-2 text-sm md:text-base">
+                            🔮 Investigación Futura
+                          </h4>
+                          <p className="text-indigo-700 text-xs md:text-sm">{summaryResults.summary.futureResearch}</p>
                         </div>
                       </div>
 
@@ -1196,12 +1210,16 @@ export default function MedicalClassificationApp() {
               <Brain className="h-8 w-8 text-blue-400" />
             </div>
 
-            <h3 className="text-2xl font-bold mb-4">Desarrollado para el AI Data Challenge de TechSphere Colombia</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-4">
+              Desarrollado para el AI Data Challenge de TechSphere Colombia
+            </h3>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-lg">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 text-sm md:text-lg">
+              <div className="flex items-center gap-2 text-center">
                 <span className="text-blue-300">📂</span>
-                <span>Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI</span>
+                <span className="break-all md:break-normal">
+                  Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-green-300">📱</span>
