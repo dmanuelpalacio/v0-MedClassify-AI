@@ -1,9 +1,0 @@
-Dominio,Confianza
-Cardiovascular,0.738
-Oncológico,0.167
-Neurológico,0.057
-Hepatorrenal,0.037
-
-Dominio Principal,Cardiovascular
-Confiabilidad,Alta
-Tiempo de Procesamiento,2.6s

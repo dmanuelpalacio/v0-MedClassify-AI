@@ -1,5 +1,0 @@
-Domain,F1-Score,Precision,Recall,Samples
-Cardiovascular,0.92,0.94,0.9,1250
-Neurológico,0.88,0.89,0.87,980
-Hepatorrenal,0.85,0.87,0.83,750
-Oncológico,0.91,0.93,0.89,1420
