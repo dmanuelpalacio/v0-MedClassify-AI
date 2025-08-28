@@ -4,6 +4,10 @@
 
 Sistema avanzado de clasificación automática de literatura médica usando modelos de lenguaje pre-entrenados y técnicas de machine learning multietiqueta.
 
+https://v0-landing-page-creation-rosy.vercel.app/
+
+https://v0-medical-literature-classificatio-kappa.vercel.app/
+
 ## 🎯 Objetivo
 
 Clasificar automáticamente artículos médicos (título + resumen) en cuatro dominios especializados:
