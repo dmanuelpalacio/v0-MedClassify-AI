@@ -276,10 +276,15 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 
 ## 📞 Contacto
 
-- **Equipo**: MedClassify AI Team
-- **Email**: medclassify@techsphere.com
+- **Equipo**: © 2025 MANUEL PALACIO / CAMILA ZAPATA
+
+Núcleo Colectivo + Línea Médica Yolombó
+
+Medellín, Colombia. Todos los derechos reservados.
+
+- **Email**: 	nucleo.colectivo.art@gmail.com
 - **Challenge**: TechSphere AI Challenge 2025
-- **Documentación**: [Docs completas](https://medclassify-ai.readthedocs.io)
+
 
 ---
 
