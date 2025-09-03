@@ -1,7 +1,14 @@
 ## 🌐 Despliegue en Vercel - Instrucciones Completas
 
+INFORME Y APP:
+
+https://v0-landing-page-creation-rosy.vercel.app/
+
+https://v0-medical-literature-classificatio-kappa.vercel.app/
+
 ### 🎯 Objetivo del Despliegue
 Desplegar la aplicación de clasificación médica como una API web accesible que funcione tanto como interfaz de usuario como endpoints API para integración.
+
 
 ### 📋 Requisitos Previos
 \`\`\`bash
