@@ -523,3 +523,14 @@ Este script ha sido diseñado para ser completamente ejecutable siguiendo las in
 2. Instalar todas las dependencias con `pip install -r requirements.txt`
 3. Tener el modelo entrenado disponible en `models/best_model.joblib`
 4. Usar el formato CSV exacto especificado
+
+
+📂 Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI
+
+📱 WhatsApp: +57 3006101221
+
+**© 2025 MANUEL PALACIO / CAMILA ZAPATA**
+
+**Núcleo Colectivo + Línea Médica Yolombó**
+
+Medellín, Colombia. Todos los derechos reservados.
