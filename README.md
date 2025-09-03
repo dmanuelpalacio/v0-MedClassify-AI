@@ -6,6 +6,8 @@ https://v0-landing-page-creation-rosy.vercel.app/
 
 https://v0-medical-literature-classificatio-kappa.vercel.app/
 
+https://github.com/dmanuelpalacio/v0-MedClassify-AI
+
 ### 🎯 Objetivo del Despliegue
 Desplegar la aplicación de clasificación médica como una API web accesible que funcione tanto como interfaz de usuario como endpoints API para integración.
 
@@ -24,7 +26,7 @@ vercel --version
 #### 1. Preparación del Proyecto
 \`\`\`bash
 # Clonar y preparar el repositorio
-git clone https://github.com/medclassify-ai/medical-literature-classification
+git clone [https://github.com/medclassify-ai/medical-literature-classification](https://github.com/dmanuelpalacio/v0-MedClassify-AI)
 cd medical-literature-classification
 
 # Instalar dependencias
