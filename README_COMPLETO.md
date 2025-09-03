@@ -4,10 +4,6 @@
 
 Sistema avanzado de clasificación automática de literatura médica usando modelos de lenguaje pre-entrenados y técnicas de machine learning multietiqueta.
 
-https://v0-landing-page-creation-rosy.vercel.app/
-
-https://v0-medical-literature-classificatio-kappa.vercel.app/
-
 ## 🎯 Objetivo
 
 Clasificar automáticamente artículos médicos (título + resumen) en cuatro dominios especializados:
@@ -276,15 +272,10 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 
 ## 📞 Contacto
 
-- **Equipo**: © 2025 MANUEL PALACIO / CAMILA ZAPATA
-
-Núcleo Colectivo + Línea Médica Yolombó
-
-Medellín, Colombia. Todos los derechos reservados.
-
-- **Email**: 	nucleo.colectivo.art@gmail.com
+- **Equipo**: MedClassify AI Team
+- **Email**: medclassify@techsphere.com
 - **Challenge**: TechSphere AI Challenge 2025
-
+- **Documentación**: [Docs completas](https://medclassify-ai.readthedocs.io)
 
 ---
 

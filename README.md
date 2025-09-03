@@ -1,20 +1,3 @@
-## 🧠 MedClassify AI - Sistema de Clasificación de Literatura Médica
-TechSphere AI Challenge 2025
-
-Sistema avanzado de clasificación automática de literatura médica usando modelos de lenguaje pre-entrenados y técnicas de machine learning multietiqueta.
-
-https://v0-landing-page-creation-rosy.vercel.app/
-
-https://v0-medical-literature-classificatio-kappa.vercel.app/
-
-## 🎯 Objetivo
-Clasificar automáticamente artículos médicos (título + resumen) en cuatro dominios especializados:
-
-Cardiovascular: Enfermedades del corazón y sistema circulatorio
-Neurológico: Trastornos del sistema nervioso
-Hepatorrenal: Enfermedades hepáticas y renales
-Oncológico: Cáncer y tumores malignos
-
 ## 🌐 Despliegue en Vercel - Instrucciones Completas
 
 ### 🎯 Objetivo del Despliegue
@@ -523,14 +506,3 @@ Este script ha sido diseñado para ser completamente ejecutable siguiendo las in
 2. Instalar todas las dependencias con `pip install -r requirements.txt`
 3. Tener el modelo entrenado disponible en `models/best_model.joblib`
 4. Usar el formato CSV exacto especificado
-
-
-📂 Repositorio GitHub: https://github.com/dmanuelpalacio/MedClassifyAI
-
-📱 WhatsApp: +57 3006101221
-
-**© 2025 MANUEL PALACIO / CAMILA ZAPATA**
-
-**Núcleo Colectivo + Línea Médica Yolombó**
-
-Medellín, Colombia. Todos los derechos reservados.

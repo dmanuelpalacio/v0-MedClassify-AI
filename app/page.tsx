@@ -1236,7 +1236,7 @@ export default function MedicalClassificationApp() {
                         <div className="flex justify-center gap-4 text-sm">
                           <div className="flex items-center gap-2">
                             <Github className="h-4 w-4" />
-                            <span>github.com/medclassify-ai</span>
+                            <span>https://github.com/dmanuelpalacio/v0-MedClassify-AI</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <MessageCircle className="h-4 w-4" />
